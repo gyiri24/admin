@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [EmployeeController::class, 'index'])->name('home');
+
+Route::get('/about', function() {
+    return view('about');
+});
