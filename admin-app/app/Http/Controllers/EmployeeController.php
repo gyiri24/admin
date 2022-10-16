@@ -10,6 +10,8 @@ class EmployeeController extends Controller
     {
         $employees = Employee::all();
 
+        //compact('employees')
+
         return view('index', ['employees' => $employees]);
     }
 }
