@@ -22,7 +22,7 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request)
     {
-        $data = $request->only('name');
+        $data = $request->only('name','type_id','user_id');
 
         return response()->json([
             'id' => $this->ticketService->create($data)
@@ -36,14 +36,14 @@ class TicketController extends Controller
 
     public function update(Ticket $employee, TicketRequest $request)
     {
-        $data = $request->only('name');
+        $data = $request->only('name','type_id','user_id');
 
         return response()->json([
             'id' => $this->ticketService->update($employee, $data)
         ]);
     }
 
-    public function delete(Ticket $ticket)
+    public function destroy(Ticket $ticket)
     {
         $ticket->delete();
 
