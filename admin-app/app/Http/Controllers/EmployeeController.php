@@ -24,13 +24,18 @@ class EmployeeController extends Controller
         return view('index', ['employees' => $employees]);
     }
 
-    public function create(EmployeeCreateUpdateRequest $request)
+    public function store(EmployeeCreateUpdateRequest $request)
     {
         $data = $request->only('name');
 
         return response()->json([
             'id' => $this->employeeService->create($data)
         ]);
+    }
+
+    public function show(Employee $employee)
+    {
+      return $employee;
     }
 
     public function update(Employee $employee, EmployeeCreateUpdateRequest $request)
