@@ -24,6 +24,11 @@ class EmployeeController extends Controller
         return view('index', ['employees' => $employees]);
     }
 
+    public function create()
+    {
+        
+    }
+
     public function store(EmployeeCreateUpdateRequest $request)
     {
         $data = $request->only('name');
@@ -38,6 +43,11 @@ class EmployeeController extends Controller
       return $employee;
     }
 
+    function edit(Employee $employee)
+    {
+        
+    }
+
     public function update(Employee $employee, EmployeeCreateUpdateRequest $request)
     {
         $data = $request->only('name');
@@ -47,7 +57,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function delete(Employee $employee)
+    public function destroy (Employee $employee)
     {
         $employee->delete();
 
