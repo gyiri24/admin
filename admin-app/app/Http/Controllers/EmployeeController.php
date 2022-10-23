@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeCreateUpdateRequest;
 use App\Http\Services\EmployeeService;
 use App\Models\Employee;
-
+use GuzzleHttp\Psr7\Request;
 
 class EmployeeController extends Controller
 {
@@ -32,9 +32,10 @@ class EmployeeController extends Controller
     {
         $data = $request->only('name');
 
-        return response()->json([
-            'id' => $this->employeeService->create($data)
-        ]);
+        $this->employeeService->create($data);
+
+        return redirect()->route('employees.index');
+
     }
 
     public function show(Employee $employee)
@@ -60,6 +61,6 @@ class EmployeeController extends Controller
     {
         $employee->delete();
 
-        return response('no content', 201);
+        return redirect()->route('employees.index');
     }
 }

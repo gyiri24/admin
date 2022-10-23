@@ -8,11 +8,9 @@ class EmployeeService
 {
     public function create(array $data)
     {
-        $employee = Employee::create([
+        Employee::create([
             'name' => $data['name']
         ]);
-
-        return $employee->id;
     }
 
     public function update(Employee $employee, array $data)
