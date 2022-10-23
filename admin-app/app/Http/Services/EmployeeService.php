@@ -20,7 +20,5 @@ class EmployeeService
         $employee->update([
             'name' => $data['name']
         ]);
-
-        return $employee->id;
     }
 }

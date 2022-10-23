@@ -25,7 +25,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        
+        return view('employees.create');
     }
 
     public function store(EmployeeCreateUpdateRequest $request)
@@ -47,13 +47,13 @@ class EmployeeController extends Controller
         return view('employees.edit', compact('employee'));
     }
 
-    public function update(Employee $employee, EmployeeCreateUpdateRequest $request)
+    public function update(EmployeeCreateUpdateRequest $request, Employee $employee)
     {
         $data = $request->only('name');
 
-        return response()->json([
-            'id' => $this->employeeService->update($employee, $data)
-        ]);
+        $this->employeeService->update($employee, $data);
+
+        return redirect()->route('employees.index');
     }
 
     public function destroy (Employee $employee)
