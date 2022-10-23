@@ -20,8 +20,7 @@ class EmployeeController extends Controller
     {
         $employees = Employee::all();
 
-
-        return view('index', ['employees' => $employees]);
+        return view('employees.index', compact('employees'));
     }
 
     public function create()
