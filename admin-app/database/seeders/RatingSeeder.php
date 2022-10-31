@@ -16,24 +16,34 @@ class RatingSeeder extends Seeder
      */
     public function run()
     {
-        $fullPersonalTraining = Service::where('slug','=', Service::FULL_PERSONAL_TRAINING)->first();
-        $halfPersonalTraining = Service::where('slug','=', Service::HALF_PERSONAL_TRAINING)->first();
+        $serviceIds = Service::all()->pluck('id')->toArray();
+        
+        $ratings = [4,5];
 
-        $fullMedicalGymnastics = Service::where('slug','=', Service::FULL_MEDICAL_GYMNASTICS)->first();
-        $halfMedicalGymnastics = Service::where('slug','=', Service::HALF_MEDICAL_GYMNASTICS)->first();
+        $comments = array(
+            "Csak ajánlani tudom! Minden ugy volt ahogy kértem es megbeszéltük", 
+            "Folyamatosan önmagukat is fejlesztő, professzionális szakemberek. Kiváló eszközpark, szuper sportkörnyezet! És a legjobb sportolók!", 
+            "Profi szakemberek, barátságos környezet!! Minden gyógyulni vágyónak szívből ajánlom!", 
+            "Szakertelem, pozitiv hozzaallas, rugalmassag, jol kiepitett infrastruktura (jo emberek, johelyen, jo idoben)",
+            "Nagyon meg voltam elégedve a szolgáltatással",
+            "Hihetelen szakértelem, remek áron",
+            "Csak ajánlani tudom.",
+            "Profi szakemberek, és hozzáállás.",
+            "Világszínvonal.",
+        );
 
-        $ultrasoundTreatment = Service::where('slug','=', Service::ULTRASOUND_TREATMENT)->first();
-        $tensTreatment = Service::where('slug','=', Service::TENS_TREATMENT)->first();
-        $interferenceTreatment = Service::where('slug','=', Service::INTERFERENCE_TREATMENT)->first();
-
-        $fullTherapeuticMassage = Service::where('slug','=', Service::FULL_THERAPEUTIC_MASSAGE)->first();
-        $halfTherapeuticMassage = Service::where('slug','=', Service::HALF_THERAPEUTIC_MASSAGE)->first();
-        $halfSportMassage = Service::where('slug','=', Service::HALF_SPORT_MASSAGE)->first();
-        $fullSportMassage = Service::where('slug','=', Service::FULL_SPORT_MAASSAGE)->first();
-
-        Rating::create([
-            'name' => 'Adminisztrátor',
-            'slug' => 'admin',
-        ]);
+        for ($x = 0; $x <= 100; $x++) {
+            $service = array_rand($serviceIds, 1);
+            $comment = array_rand($comments, 1);
+            $rating  = array_rand($ratings, 1);
+            $serviceId = Service::where('id', '=', $service)->first();
+            
+            Rating::create([
+                'service_id' => $serviceId['id'],
+                'rating' => $ratings[$rating],
+                'comment' => $comments[$comment]
+            ]);
+          }
+        
     }
 }
