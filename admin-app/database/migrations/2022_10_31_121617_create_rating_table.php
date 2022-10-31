@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('type_id');
-            $table->foreignId('user_id')->constrained();
+        Schema::create('rating', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('service_id');
+            $table->integer('rating');
+            $table->string('comment');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('rating');
     }
 };
