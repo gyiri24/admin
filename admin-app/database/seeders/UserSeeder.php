@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
         
         User::updateOrCreate(
             [
-                'user_name' => 'Tóth Zsófia',
+                'user_name' => 'tothzsofia',
             ],
             [
                 'user_name' => 'tothzsofia',
