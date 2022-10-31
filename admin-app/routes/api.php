@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/ratings', RatingController::class);
+Route::get('/ratings/service/{service}', [RatingController::class, 'getServiceRating']);

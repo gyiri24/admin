@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RatingResource;
 use Illuminate\Http\Request;
 use  App\Models\Rating;
+use  App\Models\Service;
 
 class RatingController extends Controller
 {
@@ -95,5 +97,12 @@ class RatingController extends Controller
         $rating->delete();
 
         return response()->json('No content', 204);
+    }
+
+    public function getServiceRating(Service $service)
+    {
+        $ratings = Rating::where('service_id', '=', $service->id)->get();
+
+        return RatingResource::collection($ratings);
     }
 }
