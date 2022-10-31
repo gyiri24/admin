@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\TicketController;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -21,5 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/employees', EmployeeController::class);
-Route::apiResource('/tickets', TicketController::class);
+Route::apiResource('/ratings', RatingController::class);
