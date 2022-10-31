@@ -17,8 +17,7 @@ class ServiceSeeder extends Seeder
     {
         Service::updateOrCreate(
             [
-                'user_name' => 'Gál Bence',
-                'duration' => 30,
+                'slug' => 'halfPersonalTraining',
             ],
             [
                 'user_name' => 'Gál Bence',
@@ -26,13 +25,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Személyi edzés',
                 'qr_code' => 'example',
                 'duration' => 30,
+                'slug' => 'halfPersonalTraining',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Gál Bence',
-                'duration' => 60,
+                'slug' => 'fullPersonalTraining',
             ],
             [
                 'user_name' => 'Gál Bence',
@@ -40,13 +39,14 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Személyi edzés',
                 'qr_code' => 'example',
                 'duration' => 60,
+                'slug' => 30,
+                'slug' => 'fullPersonalTraining',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Müller Júlia',
-                'duration' => 15,
+                'slug' => 'tensTreatment',
             ],
             [
                 'user_name' => 'Müller Júlia',
@@ -54,13 +54,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Tens kezelés',
                 'qr_code' => 'example',
                 'duration' => 15,
+                'slug' => 'tensTreatment',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Müller Júlia',
-                'duration' => 20,
+                'slug' => 'interferenceTreatment',
             ],
             [
                 'user_name' => 'Müller Júlia',
@@ -68,13 +68,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Interferencia kezelés',
                 'qr_code' => 'example',
                 'duration' => 20,
+                'slug' => 'interferenceTreatment',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Müller Júlia',
-                'duration' => 10,
+                'slug' => 'ultrasoundTreatment',
             ],
             [
                 'user_name' => 'Müller Júlia',
@@ -82,14 +82,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Ultrahang kezelés',
                 'qr_code' => 'example',
                 'duration' => 10,
+                'slug' => 'ultrasoundTreatment',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Vanda Tímea',
-                'service_name' => 'Sportmasszás',
-                'duration' => 30,
+                'slug' => 'halfSportMassage',
             ],
             [
                 'user_name' => 'Vanda Tímea',
@@ -97,14 +96,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Sportmasszás',
                 'qr_code' => 'example',
                 'duration' => 30,
+                'slug' => 'halfSportMassage',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Vanda Tímea',
-                'service_name' => 'Sportmasszás',
-                'duration' => 60,
+                'slug' => 'fullSportMassage',
             ],
             [
                 'user_name' => 'Vanda Tímea',
@@ -112,14 +110,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Sportmasszás',
                 'qr_code' => 'example',
                 'duration' => 60,
+                'slug' => 'fullSportMassage',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Vanda Tímea',
-                'service_name' => 'Gyógymasszázs',
-                'duration' => 30,
+                'slug' => 'halfTherapeuticMassage',
             ],
             [
                 'user_name' => 'Vanda Tímea',
@@ -127,14 +124,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Gyógymasszázs',
                 'qr_code' => 'example',
                 'duration' => 30,
+                'slug' => 'halfTherapeuticMassage',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Vanda Tímea',
-                'service_name' => 'Gyógymasszázs',
-                'duration' => 60,
+                'slug' => 'fullTherapeuticMassage',
             ],
             [
                 'user_name' => 'Vanda Tímea',
@@ -142,14 +138,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Gyógymasszázs',
                 'qr_code' => 'example',
                 'duration' => 60,
+                'slug' => 'fullTherapeuticMassage',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Kiss Zsófia',
-                'service_name' => 'Gyógytorna',
-                'duration' => 30,
+                'slug' => 'halfMedicalGymnastics',
             ],
             [
                 'user_name' => 'Kiss Zsófia',
@@ -157,14 +152,13 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Gyógytorna',
                 'qr_code' => 'example',
                 'duration' => 30,
+                'slug' => 'halfMedicalGymnastics',
             ]
         );
 
         Service::updateOrCreate(
             [
-                'user_name' => 'Kiss Zsófia',
-                'service_name' => 'Gyógytorna',
-                'duration' => 60,
+                'slug' => 'fullMedicalGymnastics',
             ],
             [
                 'user_name' => 'Kiss Zsófia',
@@ -172,6 +166,7 @@ class ServiceSeeder extends Seeder
                 'service_name' => 'Gyógytorna',
                 'qr_code' => 'example',
                 'duration' => 60,
+                'slug' => 'fullMedicalGymnastics',
             ]
         );
     }
