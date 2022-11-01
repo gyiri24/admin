@@ -41,7 +41,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -92,5 +92,10 @@ class EmployeeController extends Controller
     public function getEmployeeServices(Request $request, User $user)
     {
         return ServiceResource::collection(Service::where('user_id', '=', $user->id)->get());
+    }
+
+    public function getEmployeeWorkByInterval(Request $request)
+    {
+        
     }
 }

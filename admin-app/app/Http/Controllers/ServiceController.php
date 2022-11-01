@@ -80,9 +80,21 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Service $service)
     {
-        //
+        $data = $request->only('userName', 'price', 'qrCode', 'serviceName', 'duration', 'slug', 'userId');
+
+        $service->update([
+            'user_name' => $data['userName'],
+            'price' => $data['price'],
+            'qr_code' => $data['qrCode'],
+            'service_name' => $data['serviceName'],
+            'duration' => $data['duration'],
+            'slug' => $data['slug'],
+            'user_id' => $data['userId'],
+        ]);
+
+        return response()->json('Succes', 200);
     }
 
     /**
@@ -91,8 +103,10 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        //
+        $service->destroy();
+
+        return response()->json('No content', 204);
     }
 }
