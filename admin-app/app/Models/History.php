@@ -16,4 +16,9 @@ class History extends Model
         'service_id',
         'price'
     ];
+
+    public function users()
+    {
+        return $this->hasOne(User::class);
+    }
 }

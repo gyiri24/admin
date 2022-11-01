@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TicketController;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -27,5 +28,7 @@ Route::apiResource('/ratings', RatingController::class);
 Route::get('/ratings/service/{service}', [RatingController::class, 'getServiceRating']);
 
 Route::get('/employees',[EmployeeController::class, 'index']);
+Route::get('/employees/{user}/services', [EmployeeController::class, 'getEmployeeServices']);
 Route::apiResource('/history', HistoryController::class);
+Route::apiResource('/services', ServiceController::class);
 

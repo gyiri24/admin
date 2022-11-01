@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Service;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
@@ -15,6 +15,12 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
+        $personalTrainer = User::where('user_name', '=', User::GAL_BENCE)->first();
+        $treatment = User::where('user_name', '=', User::KISS_ZSOFIA)->first();
+        $personalMasseur = User::where('user_name', '=', User::MULLER_JULIA)->first();
+        $physicalTherapist = User::where('user_name', '=', User::VANDA_TIMEA)->first();
+
+
         Service::updateOrCreate(
             [
                 'slug' => 'halfPersonalTraining',
@@ -26,6 +32,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 30,
                 'slug' => 'halfPersonalTraining',
+                'user_id' => $personalTrainer['id'],
             ]
         );
 
@@ -41,6 +48,7 @@ class ServiceSeeder extends Seeder
                 'duration' => 60,
                 'slug' => 30,
                 'slug' => 'fullPersonalTraining',
+                'user_id' => $personalTrainer['id'],
             ]
         );
 
@@ -55,6 +63,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 15,
                 'slug' => 'tensTreatment',
+                'user_id' => $treatment['id'],
             ]
         );
 
@@ -69,6 +78,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 20,
                 'slug' => 'interferenceTreatment',
+                'user_id' => $treatment['id'],
             ]
         );
 
@@ -83,6 +93,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 10,
                 'slug' => 'ultrasoundTreatment',
+                'user_id' => $treatment['id'],
             ]
         );
 
@@ -97,6 +108,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 30,
                 'slug' => 'halfSportMassage',
+                'user_id' => $personalMasseur['id'],
             ]
         );
 
@@ -111,6 +123,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 60,
                 'slug' => 'fullSportMassage',
+                'user_id' => $personalMasseur['id'],
             ]
         );
 
@@ -125,6 +138,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 30,
                 'slug' => 'halfTherapeuticMassage',
+                'user_id' => $personalMasseur['id'],
             ]
         );
 
@@ -139,6 +153,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 60,
                 'slug' => 'fullTherapeuticMassage',
+                'user_id' => $personalMasseur['id'],
             ]
         );
 
@@ -153,6 +168,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 30,
                 'slug' => 'halfMedicalGymnastics',
+                'user_id' => $physicalTherapist['id'],
             ]
         );
 
@@ -167,6 +183,7 @@ class ServiceSeeder extends Seeder
                 'qr_code' => 'example',
                 'duration' => 60,
                 'slug' => 'fullMedicalGymnastics',
+                'user_id' => $physicalTherapist['id'],
             ]
         );
     }

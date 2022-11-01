@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\ServiceResource;
+use App\Models\Service;
 use Illuminate\Http\Request;
-use  App\Models\Role;
-use  App\Models\User;
-use  App\Models\Service;
 
-class EmployeeController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Role::where('slug', '=', Role::EMPLOYEE)->first();
-        
-        return EmployeeResource::collection(User::where('role_id', '=', $employee['id'])->get());
+        return ServiceResource::collection(Service::all());
     }
 
     /**
@@ -30,18 +25,30 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
-
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        
+        $data = $request->only('userName', 'price', 'qrCode', 'serviceName', 'duration', 'slug', 'userId');
+
+        Service::create([
+            'user_name' => $data['userName'],
+            'price' => $data['price'],
+            'qr_code' => $data['qrCode'],
+            'service_name' => $data['serviceName'],
+            'duration' => $data['duration'],
+            'slug' => $data['slug'],
+            'user_id' => $data['userId'],
+        ]);
+
+        return response()->json('Succes', 200);
     }
 
     /**
@@ -50,9 +57,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Service $service)
     {
-        //
+        return ServiceResource::make($service);
     }
 
     /**
@@ -87,10 +94,5 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getEmployeeServices(Request $request, User $user)
-    {
-        return ServiceResource::collection(Service::where('user_id', '=', $user->id)->get());
     }
 }

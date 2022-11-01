@@ -52,4 +52,9 @@ class Service extends Model
         'duration',
         'slug'
     ];
+
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

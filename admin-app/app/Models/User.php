@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const GAL_BENCE = 'galbence';
+    public const KISS_ZSOFIA = 'kisszsofia';
+    public const MULLER_JULIA = 'mullerjulia';
+    public const VANDA_TIMEA = 'vandatimea';
+
     protected $fillable = [
         'user_name',
         'first_name',
@@ -28,4 +33,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'newsletter' => 'boolean',
     ];
+
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
 }
