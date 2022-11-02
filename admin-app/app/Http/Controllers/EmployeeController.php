@@ -18,9 +18,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Role::where('slug', '=', Role::EMPLOYEE)->first();
-        
-        return EmployeeResource::collection(User::where('role_id', '=', $employee['id'])->get());
+        $emplyeeRole = Role::where('slug', '=', Role::EMPLOYEE)->first();
+        $employees = User::where('role_id', '=', $emplyeeRole['id'])->get();
+
+        return view('employees.index', ['employees' => $employees]);
     }
 
     /**
@@ -41,7 +42,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-
+        return 'valami';
     }
 
     /**
@@ -63,7 +64,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = User::find($id);
+
+        return view('employees.edit', ['employee' => $employee]);
     }
 
     /**
@@ -96,6 +99,6 @@ class EmployeeController extends Controller
 
     public function getEmployeeWorkByInterval(Request $request)
     {
-        
+
     }
 }
