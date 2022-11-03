@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\ServiceResource;
+use App\Http\Services\EmployeeService;
 use Illuminate\Http\Request;
 use  App\Models\Role;
 use  App\Models\User;
@@ -11,6 +12,13 @@ use  App\Models\Service;
 
 class EmployeeController extends Controller
 {
+    public $employeeService;
+
+    function __construct(EmployeeService $employeeService)
+    {
+        $this->employeeService = $employeeService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -97,8 +105,27 @@ class EmployeeController extends Controller
         return ServiceResource::collection(Service::where('user_id', '=', $user->id)->get());
     }
 
-    public function getEmployeeWorkByInterval(Request $request)
+    public function getEmployeeWorkingHourskByTimeUnit(Request $request)
     {
+        $filter = $request->only('type','date');
+        $workingHours = 0;
+        $dateUnix = strtotime($filter['date']);
 
+        switch ($filter['type']) {
+            case 'yearly' :
+                $year = date("Y", $dateUnix);
+                $workingHours = $this->employeeService->getEmployeeWorkingHoursByDate($year);
+                break;
+            case 'monthly' :
+                $month = date("Y-m", $dateUnix);
+                $workingHours = $this->employeeService->getEmployeeWorkingHoursByDate($month);
+                break;
+            case 'daily' :
+                $day = date("Y-m-d", $dateUnix);
+                $workingHours =$this->employeeService->getEmployeeWorkingHoursByDate($day);
+                break;
+        }
+
+        return $workingHours;
     }
 }
