@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HistoryController;
 use App\Models\Employee;
+use App\Models\History;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +28,6 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+
 Route::resource('/employees', EmployeeController::class)->middleware('auth');
+Route::resource('/history', HistoryController::class)->middleware('auth');
