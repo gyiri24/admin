@@ -21,27 +21,24 @@ class HistorySeeder extends Seeder
         $userIds = User::where('role_id', '=', $roleUserId['id'])->pluck('id')->toArray();
         $serviceIds = Service::pluck('id')->toArray();
 
-        for($x = 0; $x < 2000; $x++) {
+        for($x = 0; $x < 10000; $x++) {
 
             $userId = array_rand($userIds);
             $serviceId = array_rand($serviceIds);
 
-            $user = User::find($userId);
-            $service = Service::find($serviceId);
+            $user = User::find($userIds[$userId]);
+            $service = Service::find($serviceIds[$serviceId]);
 
-            $int= rand(1546318800,1672527599);
+            $int= rand(1609477200,1640926800);
             $date = date("Y-m-d H:i:s", $int);
 
             History::create([
-                'user_id' => $user['id'],
-                'service_id' => $service['id'],
-                'price' => $service['price'],
-                'created_at' => $date,
-                'updated_at' => $date
+                    'user_id' => $user['id'],
+                    'service_id' => $service['id'],
+                    'price' => $service['price'],
+                    'created_at' => $date,
+                    'updated_at' => $date
             ]);
         }
-
-
-
     }
 }
