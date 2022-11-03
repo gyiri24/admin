@@ -44,8 +44,31 @@ class Service extends Model
         self::FULL_SPORT_MAASSAGE
     ];
 
+    public const PERSONAL_TRAINING = [
+        self::FULL_PERSONAL_TRAINING,
+        self::HALF_PERSONAL_TRAINING
+    ];
+
+    public const GYMNASTICS = [
+        self::FULL_MEDICAL_GYMNASTICS,
+        self::HALF_MEDICAL_GYMNASTICS
+    ];
+
+    public const TREATMENT = [
+        self::ULTRASOUND_TREATMENT,
+        self::TENS_TREATMENT,
+        self::INTERFERENCE_TREATMENT,
+    ];
+
+    public const MASSAGE = [
+        self::FULL_THERAPEUTIC_MASSAGE,
+        self::HALF_THERAPEUTIC_MASSAGE,
+        self::HALF_SPORT_MASSAGE,
+        self::FULL_SPORT_MAASSAGE
+    ];
+
     protected $fillable = [
-        'user_name', 
+        'user_name',
         'price',
         'qr_code',
         'service_name',

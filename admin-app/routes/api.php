@@ -28,6 +28,7 @@ Route::apiResource('/ratings', RatingController::class);
 Route::get('/ratings/service/{service}', [RatingController::class, 'getServiceRating']);
 
 Route::get('/employees',[EmployeeController::class, 'index']);
+Route::get('/employees/statistics',[EmployeeController::class, 'getEmployeeWorkingHourskByTimeUnit']);
 Route::get('/employees/{user}/services', [EmployeeController::class, 'getEmployeeServices']);
 Route::apiResource('/history', HistoryController::class);
 Route::apiResource('/services', ServiceController::class);
