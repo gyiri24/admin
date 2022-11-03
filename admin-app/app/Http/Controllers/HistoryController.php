@@ -16,7 +16,9 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        return History::all();
+        //$history = History::all();
+
+        return  view('history.index');
     }
 
     /**

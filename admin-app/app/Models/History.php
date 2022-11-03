@@ -17,6 +17,11 @@ class History extends Model
         'price'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
