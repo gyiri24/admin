@@ -42,7 +42,7 @@ class RatingController extends Controller
             'rating'  => $request->get('rating'),
             'comment'  => $request->get('comment')
         ]);
-        
+
         return response()->json('Succes', 200);
     }
 

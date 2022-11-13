@@ -18,7 +18,8 @@ class HistoryController extends Controller
     {
         //$history = History::all();
 
-        return  view('history.index');
+        //return  view('history.index');
+        return  HistoryResource::collection(History::all());
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\ServiceResource;
+use App\Http\Resources\UserResource;
 use App\Http\Services\EmployeeService;
 use Illuminate\Http\Request;
 use  App\Models\Role;
@@ -29,7 +30,8 @@ class EmployeeController extends Controller
         $emplyeeRole = Role::where('slug', '=', Role::EMPLOYEE)->first();
         $employees = User::where('role_id', '=', $emplyeeRole['id'])->get();
 
-        return view('employees.index', ['employees' => $employees]);
+        //return view('employees.index', ['employees' => $employees]);
+        return UserResource::collection($employees);
     }
 
     /**
@@ -50,7 +52,19 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        return 'valami';
+        $data = $request->only('name', 'firstName', 'lastName', 'newsletter', 'amount', 'email', 'roleId');
+
+        User::create([
+            'name' => $data['name'],
+            'first_name' => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'newsletter' => $data['newsletter'],
+            'amount' => $data['amount'],
+            'email' => $data['email'],
+            'role_id' => $data['roleId'],
+        ]);
+
+        return response()->json('Succes', 200);
     }
 
     /**
@@ -59,9 +73,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return UserResource::make($user);
     }
 
     /**
@@ -84,9 +98,21 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $data = $request->only('name', 'firstName', 'lastName', 'newsletter', 'amount', 'email', 'roleId');
+
+        $user->update([
+            'name' => $data['name'],
+            'first_name' => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'newsletter' => $data['newsletter'],
+            'amount' => $data['amount'],
+            'email' => $data['email'],
+            'role_id' => $data['roleId'],
+        ]);
+
+        return response()->json('Succes', 200);
     }
 
     /**
@@ -95,9 +121,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json('No content', 204);
     }
 
     public function getEmployeeServices(Request $request, User $user)

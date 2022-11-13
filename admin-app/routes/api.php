@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TicketController;
 use App\Models\Employee;
@@ -31,4 +32,4 @@ Route::get('/employees',[EmployeeController::class, 'index']);
 Route::get('/employees/statistics',[EmployeeController::class, 'getEmployeeWorkingHourskByTimeUnit']);
 Route::get('/employees/{user}/services', [EmployeeController::class, 'getEmployeeServices']);
 Route::apiResource('/services', ServiceController::class);
-
+Route::apiResource('/roles', RoleController::class);
