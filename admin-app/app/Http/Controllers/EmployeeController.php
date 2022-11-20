@@ -30,7 +30,7 @@ class EmployeeController extends Controller
         $emplyeeRole = Role::where('slug', '=', Role::EMPLOYEE)->first();
         $employees = User::where('role_id', '=', $emplyeeRole['id'])->get();
 
-        //return view('employees.index', ['employees' => $employees]);
+
         return UserResource::collection($employees);
     }
 

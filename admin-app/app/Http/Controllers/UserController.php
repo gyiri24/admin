@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use  App\Models\Role;
+use  App\Models\User;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -11,9 +14,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $userRole = Role::where('slug', '=', Role::USER)->first();
+        $users = User::where('role_id', '=', $userRole['id'])->get();
+
+        $searchText = $request->input('searchText');
+
+        if(!empty($searchText)) {
+            $users = User::whereLike('email', $searchText)->get();
+        }
+
+        return UserResource::collection($users);
     }
 
     /**
