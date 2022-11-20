@@ -22,7 +22,8 @@ class UserController extends Controller
         $searchText = $request->input('searchText');
 
         if(!empty($searchText)) {
-            $users = User::whereLike('email', $searchText)->get();
+            $users = User::where('role_id', '=', $userRole['id'])
+                ->whereLike('email', $searchText)->get();
         }
 
         return UserResource::collection($users);
@@ -55,9 +56,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return UserResource::make($user);
     }
 
     /**
@@ -89,8 +90,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json('No content', 204);
     }
 }

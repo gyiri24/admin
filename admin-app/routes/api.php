@@ -35,3 +35,4 @@ Route::get('/employees/{user}/services', [EmployeeController::class, 'getEmploye
 Route::apiResource('/services', ServiceController::class);
 Route::apiResource('/roles', RoleController::class);
 Route::get('/users',[UserController::class, 'index']);
+Route::get('/users/{user}',[UserController::class, 'show']);
