@@ -14,22 +14,22 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::createOrUpdate([
+        Role::create([
             'name' => 'Adminisztrátor',
             'slug' => 'admin',
         ]);
 
-        Role::createOrUpdate([
+        Role::create([
             'name' => 'Munkavállaló',
             'slug' => 'employee',
         ]);
 
-        Role::createOrUpdate([
+        Role::create([
             'name' => 'Felhasználó',
             'slug' => 'user',
         ]);
 
-        Role::createOrUpdate([
+        Role::create([
             'name' => 'Szuper Adminisztrátor',
             'slug' => 'super',
         ]);

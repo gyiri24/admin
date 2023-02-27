@@ -19,28 +19,7 @@ class EmployeeController extends Controller
     {
         $this->employeeService = $employeeService;
     }
-        /**
-     * @OA\Get(
-     *      path="/projects",
-     *      operationId="getProjectsList",
-     *      tags={"Projects"},
-     *      summary="Get list of projects",
-     *      description="Returns list of projects",
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
-     *       ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
-     *     )
-     */
+
     /**
      * Display a listing of the resource.
      *

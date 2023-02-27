@@ -6,13 +6,15 @@ use App\Http\Resources\RatingResource;
 use Illuminate\Http\Request;
 use  App\Models\Rating;
 use  App\Models\Service;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
@@ -22,7 +24,7 @@ class RatingController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -33,7 +35,7 @@ class RatingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -49,8 +51,8 @@ class RatingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Rating $rating
+     * @return Rating
      */
     public function show(Rating $rating)
     {
@@ -61,9 +63,9 @@ class RatingController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function edit($id)
+    public function edit($id): Response
     {
         //
     }
@@ -73,7 +75,7 @@ class RatingController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Rating $rating)
     {
@@ -90,7 +92,7 @@ class RatingController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Rating $rating)
     {
@@ -99,7 +101,7 @@ class RatingController extends Controller
         return response()->json('No content', 204);
     }
 
-    public function getServiceRating(Service $service)
+    public function getServiceRating(Service $service): AnonymousResourceCollection
     {
         $ratings = Rating::where('service_id', '=', $service->id)->get();
 
